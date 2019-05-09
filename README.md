@@ -56,8 +56,7 @@ necessary R libraries for the code used for data processing and analysis are:
 All data preparation and analyses are reproduced, as well as all Figures in the
 report.
 
-All workflow information is contained in the MASTER_reproducibility.R script. The general steps
-are:
+The general steps are:
 
 1. Take exploratory data analysis on the raw data.
 2. Conduct data processing/preparation for the analyses.
