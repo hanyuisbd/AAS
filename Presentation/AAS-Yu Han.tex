@@ -1,0 +1,253 @@
+\documentclass{beamer}
+
+\mode<presentation> {
+	
+	% The Beamer class comes with a number of default slide themes
+	% which change the colors and layouts of slides. Below this is a list
+	% of all the themes, uncomment each in turn to see what they look like.
+	
+	%\usetheme{default}
+	%\usetheme{AnnArbor}
+	%\usetheme{Antibes}
+	%\usetheme{Bergen}
+	%\usetheme{Berkeley}
+	%\usetheme{Berlin}
+	%\usetheme{Boadilla}
+	%\usetheme{CambridgeUS}
+	%\usetheme{Copenhagen}
+	%\usetheme{Darmstadt}
+	%\usetheme{Dresden}
+	%\usetheme{Frankfurt}
+	%\usetheme{Goettingen}
+	%\usetheme{Hannover}
+	%\usetheme{Ilmenau}
+	%\usetheme{JuanLesPins}
+	%\usetheme{Luebeck}
+	\usetheme{Madrid}
+	%\usetheme{Malmoe}
+	%\usetheme{Marburg}
+	%\usetheme{Montpellier}
+	%\usetheme{PaloAlto}
+	%\usetheme{Pittsburgh}
+	%\usetheme{Rochester}
+	%\usetheme{Singapore}
+	%\usetheme{Szeged}
+	%\usetheme{Warsaw}
+	
+	% As well as themes, the Beamer class has a number of color themes
+	% for any slide theme. Uncomment each of these in turn to see how it
+	% changes the colors of your current slide theme.
+	
+	%\usecolortheme{albatross}
+	%\usecolortheme{beaver}
+	%\usecolortheme{beetle}
+	%\usecolortheme{crane}
+	%\usecolortheme{dolphin}
+	%\usecolortheme{dove}
+	%\usecolortheme{fly}
+	%\usecolortheme{lily}
+	%\usecolortheme{orchid}
+	%\usecolortheme{rose}
+	%\usecolortheme{seagull}
+	%\usecolortheme{seahorse}
+	%\usecolortheme{whale}
+	%\usecolortheme{wolverine}
+	
+	%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+	%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+	
+	%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Advanced Applied　Statistics]{Detection of Dynamicity of Covariance Matrix} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{Yu Han} % Your name
+\institute[RUC] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+	Institute of Statistics and Big Data\\
+	Renmin University of China \\ % Your institution for the title page
+	\medskip
+	%\href{mailto:hanyu\_isbd@ruc.edu.cn}{\nolinkurl{hanyu\_isbd@ruc.edu.cn}} % Hyperlink for email
+	%\texttt{hanyu\_isbd@ruc.edu.cn} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+	
+	\begin{frame}
+	\titlepage % Print the title page as the first slide
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Introduction}
+\begin{itemize}
+	\item It is common for researchers to use high dimensional matrices to store large collections of data and extract information from the covariance matrices.
+	\item Researchers from home and abroad have studied a lot and enjoyed several mature results on the estimation of static matrices. For example, see Bickel(2008), Cai(2011), etc.
+	\item However, in some real cases, covariance may vary with other variables. 
+	\item Here we consider the case that covariance matrices vary with time $U$.
+	\item It will be of great value if we can detect the dynamic property of covariance matrices.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Great Value of Dynamic Covariance Model}
+\begin{itemize}
+\item Schizophrenia and bipolar disorder are clinically hard to diffentiate, for they both often present with psychotic symptoms. Research shows that some bipolar disorder patients can go years misdiagnosed as much as 45$\%$ of the time (Meyer, 2009). 
+\item The consequence of miscategorization is costly both economically and in terms of human suffering (DiLuca, 2014)
+\item Data clearly show that incorporation of dynamics may provide a more sensitive and specific marker of disease than static connectivity(Calhoun, 2014).
+
+
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Data Description}
+\begin{itemize}
+\item Attention Deficit Hyperactivity Disorder (ADHD) affects at least 5-10$\% $ of school-age children and is associated with substantial lifelong impairment.
+\item The data contain 776 resting-state fMRI and anatomical datasets aggregated across 8 independent imaging sites, 491 of which were obtained from typically developing individuals and 285 in children and adolescents with ADHD (ages: 7-21 years old). 
+\item ADHD-200 Phenotypic Key:\\
+0: Typically Developing Children\\
+1: ADHD-Combined\\
+2: ADHD-Hyperactive/Impulsive\\
+3: ADHD-Inattentive\\
+
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Detection of Dynamic Property}
+\begin{itemize}
+\item The data of each individual consists 172 scanned data of 190 different regions of interest (ROI).
+\item We split the 172 observations into two sets, each consisting 86 observations. The heatmaps of the first 20 ROIs for individual 0010002 (DX=3) are shown below
+\begin{figure}
+	\begin{minipage}[t]{0.45\linewidth}
+		\centering
+		\includegraphics[height=4cm,width=6cm]{heat10002-1}
+		\caption{1-86 scans}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\linewidth}
+		\centering
+		\includegraphics[height=4cm,width=6cm]{heat10002-2}
+		\caption{87-172 scans}
+	\end{minipage}
+\end{figure}
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Detection of Dynamic Property}
+\begin{itemize}
+	\item The heatmaps of the first 20 ROIs for individual 1000804 (DX=0):
+	\begin{figure}
+		\begin{minipage}[t]{0.45\linewidth}
+			\centering
+			\includegraphics[height=4cm,width=6cm]{heat1000804-1}
+			\caption{1-86 scans}
+		\end{minipage}
+		\begin{minipage}[t]{0.45\linewidth}
+			\centering
+			\includegraphics[height=4cm,width=6cm]{heat1000804-2}
+			\caption{87-172 scans}
+		\end{minipage}
+	\end{figure}
+	
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Dynamic Model for Covaricance Matrices}
+\begin{itemize}
+\item Chen(2016) has proposed an effective dynamic model to estimation the dynamic covariance matrix. 
+\item Let $Y=\left(Y_{1}, \cdots, Y_{p}\right)^{T}$ be a p-dimensional random vector and $U$ denote time. Suppose that $\left\{Y_{i}, U_{i}\right\}$ with $Y_{i}=\left(Y_{i 1}, \cdots, Y_{i p}\right)^{T}$ is a random sample from the population $\{Y, U\},$ for $i=1, \cdots, n$.
+\item The empirical sample conditional covariance matrix based on kernel smoothing is 
+$$
+\begin{aligned} \hat{\Sigma}(u) & :=  \left\{\sum_{i=1}^{n} K_{h}\left(U_{i}-u\right) Y_{i} Y_{i}^{T}\right\} \cdot \left\{\sum_{i=1}^{n} K_{h}\left(U_{i}-u\right)\right\}^{-1} \\ 
+&\quad -\left\{\sum_{i=1}^{n} K_{h}\left(U_{i}-u\right) Y_{i}\right\}\left\{\sum_{i=1}^{n} K_{h}\left(U_{i}-u\right) Y_{i}^{T}\right\}\\
+&\quad \times \left\{\sum_{i=1}^{n} K_{h}\left(U_{i}-u\right)\right\}^{-2} \end{aligned}
+$$
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Dynamic Model for Covaricance Matrices}
+\begin{itemize}
+\item Under the model from Chen(2016), we plot some correlations of individual 1023964 (DX=3):
+\begin{center}
+	\includegraphics[height=5cm,width=7cm]{lines}
+\end{center}
+\item It is clear that the correlation between each pair changes a lot with the time going.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Future Expectation}
+\begin{itemize}
+	\item It is expected that voxels of some or all ROIs may vary with DX and have similarity among people with the same sympotom.
+	\item The scatter plots of absolute sums of individuals 1000804 (DX=0) and 0010005 (DX=2) are shown below
+	\begin{figure}
+		\begin{minipage}[t]{0.45\linewidth}
+			\centering
+			\includegraphics[height=4cm,width=5cm]{point_1000804_0}
+			\caption{1000804 (DX=0)}
+		\end{minipage}
+		\begin{minipage}[t]{0.45\linewidth}
+			\centering
+			\includegraphics[height=4cm,width=5cm]{point_0010005_2}
+			\caption{0010005 (DX=2)}
+		\end{minipage}
+	\end{figure}
+	
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Future Expectation}
+\begin{itemize}
+	\item Boxplots for absolute sums of individuals 1000804 (DX=0), 0010005 (DX=2) and 1023964 (DX=3) are shown below
+	\begin{center}
+		\includegraphics[width=3.1in]{box_absolute_sum}
+	\end{center}
+	
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\begin{center}
+	\huge{Thank you!}\\
+	\tiny{Questions?}
+	
+\end{center}
+\end{frame}
+
+%\bibliography{ME}
+%\bibliographystyle{alpha}
+\end{document}
