@@ -58,7 +58,6 @@ report.
 
 The general steps are:
 
-1. Take exploratory data analysis on the raw data.
-2. Conduct data processing/preparation for the analyses.
-3. Detect dynamicity of covariance matrices
-4. Generate all plots in the report.
+1. Conduct data processing/preparation for the analyses.
+2. Take exploratory data analysis and detect dynamicity of covariance matrices.
+3. Generate all plots in the report.
